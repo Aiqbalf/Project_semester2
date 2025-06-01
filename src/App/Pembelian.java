@@ -1,4 +1,4 @@
-bcpackage App;
+package App;
 
 import Class.Session;
 import java.awt.Color;
