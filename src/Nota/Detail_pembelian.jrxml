@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="230" pageHeight="380" columnWidth="224" leftMargin="3" rightMargin="3" topMargin="4" bottomMargin="4" uuid="d0cff83b-6cb0-45fc-b04e-21a02b1c2dde">
+	<property name="ireport.zoom" value="2.853116706110004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="230"/>
+	<parameter name="idpembelian" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    pembelian.id AS nomor_pembelian,
+    pembelian.tanggal,
+    pembelian.supplier,
+    products.barcode,
+    products.jenis AS nama_produk,
+    detail_pembelian.jumlah,
+    detail_pembelian.harga_satuan,
+    detail_pembelian.subtotal,
+    pembelian.total AS total_pembelian
+FROM 
+    didiexs.pembelian
+INNER JOIN 
+    didiexs.detail_pembelian ON pembelian.id = detail_pembelian.id_pembelian
+INNER JOIN 
+    didiexs.products ON detail_pembelian.id_products = products.id
+WHERE 
+    pembelian.id = $P{idpembelian}]]>
+	</queryString>
+	<field name="nomor_pembelian" class="java.lang.Integer"/>
+	<field name="tanggal" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="supplier" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="barcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_produk" class="java.lang.String"/>
+	<field name="jumlah" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_satuan" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_pembelian" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="38" width="224" height="20" uuid="17a0390d-1fbe-4a68-b9db-a01d1e2a25a6"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[========================================]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="224" height="20" uuid="17a0390d-1fbe-4a68-b9db-a01d1e2a25a6"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[========================================]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="38" width="99" height="10" uuid="f6409dbd-ff37-4839-9a24-52c7ef45e9d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="17"/>
+				</textElement>
+				<text><![CDATA[Detail Pembelian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="224" height="20" uuid="2a8be5a4-337e-4814-92c3-93da672c5d5e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[========================================]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="224" height="58" uuid="724cd70f-b624-4e7c-811b-ef92c7761674"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detail Pembelian]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="57" height="15" uuid="e2b58766-c843-4082-bcea-c82ef68db2d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="15" width="57" height="20" uuid="c9be6c39-9caa-499e-8b91-87517fa32a5c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{supplier}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="46" height="20" uuid="5cb8e5e7-5803-44bf-b56a-02b80d01f56a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Supplier :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="46" height="15" uuid="2b3099e2-18de-4bb8-b647-5a5040481b56"/>
+				<text><![CDATA[Tanggal :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="36" height="20" uuid="f247a572-c5ef-4cc1-b4e2-5022f671c970"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="3" width="43" height="20" uuid="4de577bc-9c51-4dd4-9a9b-1286b4f55958"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="3" width="29" height="20" uuid="50c1c208-6178-415a-b389-6f68f3e54e9b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="166" y="3" width="64" height="20" uuid="267ac75e-3434-40be-a49a-22b638fb0128"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[subtotal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="2" width="224" height="1" uuid="cad6174e-4d7c-43e0-8063-0cacae8b6d7d"/>
+			</line>
+			<line>
+				<reportElement x="0" y="22" width="224" height="1" uuid="640d496b-6763-4585-ac4b-450b2631ac08"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="64" y="2" width="61" height="20" uuid="b1580fa6-13e0-4c64-831c-ff0d7ab32e3e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{harga_satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="67" height="20" uuid="6effcdd4-f1aa-453e-a492-f4efc26623ba"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="2" width="41" height="20" uuid="37fe2ff6-9dd1-412c-80bc-e89feda366c9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="2" width="64" height="20" uuid="413c729c-62c1-4559-af58-df9362b5445c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="1" width="224" height="1" uuid="db1741c0-9863-4c3e-9a95-d33f8f38a3f2"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="2" width="36" height="16" uuid="f922a948-6e1d-4593-882a-f9f26bb6a84f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="2" width="70" height="16" uuid="4617a2eb-85ab-4408-a561-da6461d60e54"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_pembelian}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
